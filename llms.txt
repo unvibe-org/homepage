@@ -2,11 +2,11 @@
 
 > Avoiding the vibe coding hangover. A hands-on workshop teaching developers how to use AI coding tools (Claude Code, Cursor) to write clean, maintainable, production-ready code — not just ship fast.
 
-bettervibe.org hosts a one-afternoon, in-person workshop in Munich for developers who already use AI coding tools and want to use them better. The workshop is taught by Dominik Grusemann and runs on May 15, 2026, 1:00–6:00 PM at WERK1, Munich. Tickets are €75.
+bettervibe.org hosts a one-afternoon, in-person workshop in Munich for developers who already use AI coding tools and want to use them better. The workshop is taught by Dominik Grusemann and runs on May 13, 2026, 1:00–6:00 PM at WERK1, Munich. Tickets are €75.
 
 ## Event details
 
-- Date: May 15, 2026
+- Date: May 13, 2026
 - Time: 1:00 – 6:00 PM
 - Location: WERK1, Munich, Germany
 - Price: €75
