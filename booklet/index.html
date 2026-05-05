@@ -278,6 +278,91 @@
         color: #fff;
     }
 
+    .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        background: transparent;
+        border: 1px solid var(--border-strong);
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: var(--font);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition:
+            border-color 0.2s var(--ease),
+            color 0.2s var(--ease);
+    }
+    .btn-ghost:hover {
+        border-color: var(--amber-dim);
+        color: var(--amber);
+    }
+
+    /* ── UPDATES ── */
+    .updates-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        font-weight: 300;
+        line-height: 1.7;
+        margin-bottom: 24px;
+    }
+
+    .updates-form {
+        display: flex;
+        gap: 12px;
+        max-width: 480px;
+        margin-bottom: 16px;
+    }
+
+    .updates-input {
+        flex: 1;
+        min-width: 0;
+        background: transparent;
+        border: 1px solid #4A4D52;
+        border-radius: 4px;
+        padding: 12px 16px;
+        color: var(--text-primary);
+        font-family: var(--font);
+        font-size: 12px;
+        transition: border-color 0.2s var(--ease);
+    }
+    .updates-input::placeholder {
+        color: var(--text-tertiary);
+    }
+    .updates-input:focus {
+        outline: none;
+        border-color: var(--amber-dim);
+    }
+
+    .updates-btn {
+        white-space: nowrap;
+    }
+
+    .updates-feedback {
+        display: none;
+        font-size: 12px;
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+    .updates-feedback.success {
+        display: block;
+        color: var(--text-secondary);
+    }
+    .updates-feedback.error {
+        display: block;
+        color: var(--amber);
+    }
+
+    .updates-trust {
+        font-size: 11px;
+        color: rgba(232, 228, 223, 0.45);
+        letter-spacing: 0.3px;
+    }
+
     /* ── COVER THUMBNAIL ── */
     .booklet-cover {
         width: 180px;
@@ -394,6 +479,14 @@
             width: 160px;
         }
 
+        .updates-form {
+            flex-direction: column;
+        }
+        .updates-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
         footer { padding: 28px 24px; }
     }
 
@@ -492,6 +585,34 @@
 
     <hr class="divider">
 
+    <!-- Updates -->
+    <div class="section-label">Updates</div>
+
+    <p class="updates-desc">
+        Future workshop dates and new editions of the booklet, when they ship.
+    </p>
+
+    <form id="updates-form" class="updates-form" method="POST">
+        <input
+            type="email"
+            name="fields[email]"
+            class="updates-input"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+            aria-label="Email address"
+        />
+        <button type="submit" class="btn-ghost updates-btn">Subscribe →</button>
+        <input type="hidden" name="ml-submit" value="1" />
+        <input type="hidden" name="anticsrf" value="true" />
+    </form>
+
+    <div id="updates-feedback" class="updates-feedback" role="status" aria-live="polite"></div>
+
+    <p class="updates-trust">No marketing tax. Unsubscribe anytime.</p>
+
+    <hr class="divider">
+
     <!-- Workshop footer link -->
     <div class="workshop-link-row">
         <span class="workshop-note">Working through this hands-on — May 13, WERK1 Munich</span>
@@ -509,6 +630,55 @@
         <a href="/imprint.html">Imprint</a>
     </div>
 </footer>
+
+<script>
+    (function () {
+        var form = document.getElementById("updates-form");
+        var feedback = document.getElementById("updates-feedback");
+        if (!form) return;
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var email = form.querySelector('[name="fields[email]"]');
+            if (!email.value || !email.validity.valid) {
+                feedback.textContent = "Please enter a valid email address.";
+                feedback.className = "updates-feedback error";
+                return;
+            }
+
+            var btn = form.querySelector(".updates-btn");
+            var originalLabel = btn.textContent;
+            btn.textContent = "Sending…";
+            btn.disabled = true;
+            feedback.className = "updates-feedback";
+            feedback.textContent = "";
+
+            fetch(
+                "https://assets.mailerlite.com/jsonp/2239840/forms/183629273017354022/subscribe",
+                {
+                    method: "POST",
+                    body: new FormData(form),
+                }
+            )
+                .then(function () {
+                    form.style.display = "none";
+                    feedback.textContent = "Subscribed. We'll be in touch.";
+                    feedback.className = "updates-feedback success";
+                })
+                .catch(function () {
+                    feedback.textContent =
+                        "Something went wrong — try again or email us.";
+                    feedback.className = "updates-feedback error";
+                    btn.textContent = originalLabel;
+                    btn.disabled = false;
+                });
+        });
+
+        fetch(
+            "https://assets.mailerlite.com/jsonp/2239840/forms/183629273017354022/takel"
+        );
+    })();
+</script>
 
 </body>
 </html>
