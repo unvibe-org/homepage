@@ -34,6 +34,7 @@ bettervibe.org hosts a one-afternoon, in-person workshop in Munich for developer
 ## Pages
 
 - [Homepage](/index.html): Full workshop overview, curriculum, instructors, registration
+- [Booklet](/booklet/): Vibe Coder's Guide — 33-page PDF on agentic engineering practices, free to read
 - [Privacy policy](/privacy.html)
 - [Imprint](/imprint.html)
 

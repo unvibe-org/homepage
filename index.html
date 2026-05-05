@@ -260,6 +260,25 @@
                 color: #fff !important;
             }
 
+            .nav-ghost {
+                display: inline-flex;
+                align-items: center;
+                padding: 7px 18px;
+                background: transparent;
+                color: var(--text-secondary) !important;
+                border: 1px solid var(--border-strong);
+                border-radius: 4px;
+                font-size: 11px !important;
+                font-weight: 500 !important;
+                letter-spacing: 0.5px;
+                text-transform: uppercase !important;
+                transition: border-color 0.2s var(--ease), color 0.2s var(--ease) !important;
+            }
+            .nav-ghost:hover {
+                border-color: var(--amber-dim) !important;
+                color: var(--amber) !important;
+            }
+
             @keyframes blink {
                 50% {
                     opacity: 0;
@@ -1386,6 +1405,7 @@
                 <li><a href="#instructors">Instructors</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="/booklet" class="nav-ghost">Booklet</a></li>
                 <li>
                     <a href="https://luma.com/lj9niymo" class="nav-cta"
                         >Register →</a
@@ -1429,6 +1449,9 @@
                     >
                     <a href="#curriculum" class="btn-ghost"
                         >See the curriculum</a
+                    >
+                    <a href="/booklet" class="btn-ghost"
+                        >Read the booklet →</a
                     >
                 </div>
 

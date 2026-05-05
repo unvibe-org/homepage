@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Coder's Guide — bettervibe</title>
+<meta name="description" content="33 pages. Three authors. Two years of shipping production code with Claude Code, Cursor, and Codex distilled into ten practices we wish someone had handed us in 2024.">
+<link rel="canonical" href="https://bettervibe.org/booklet/">
+<meta property="og:title" content="Vibe Coder's Guide to Agentic Engineering">
+<meta property="og:description" content="33 pages. Three authors. Two years of shipping production code with Claude Code, Cursor, and Codex distilled into ten practices.">
+<meta property="og:image" content="/public/og-image.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+<meta name="theme-color" content="#0D0F11">
+<style>
+    @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 300 700;
+        font-display: swap;
+        src: url(/public/fonts/jetbrains-mono-latin-ext.woff2) format("woff2");
+        unicode-range:
+            U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+            U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+            U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0,
+            U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 300 700;
+        font-display: swap;
+        src: url(/public/fonts/jetbrains-mono-latin.woff2) format("woff2");
+        unicode-range:
+            U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+            U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+            U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    :root {
+        --bg-primary: #0d0f11;
+        --bg-secondary: #141719;
+        --bg-card: #1e2227;
+        --amber: #da7756;
+        --amber-light: #e8956f;
+        --amber-dim: #c4623e;
+        --text-primary: #e8e4df;
+        --text-secondary: #9b9690;
+        --text-tertiary: #6b6660;
+        --text-muted: #4a4640;
+        --green: #7ec699;
+        --border: rgba(255, 255, 255, 0.06);
+        --border-strong: rgba(255, 255, 255, 0.12);
+        --font: "JetBrains Mono", monospace;
+        --radius: 6px;
+        --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: var(--text-muted) var(--bg-secondary);
+    }
+
+    body {
+        font-family: var(--font);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.7;
+        font-size: 14px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9999;
+    }
+
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.025) 2px,
+            rgba(0, 0, 0, 0.025) 4px
+        );
+        pointer-events: none;
+        z-index: 9998;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+    a:visited { color: #fff; }
+    a:hover { color: var(--amber); }
+    a:active { color: var(--amber-light); }
+
+    /* ── NAV ── */
+    nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        background: rgba(13, 15, 17, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: -0.5px;
+        text-decoration: none;
+    }
+    .nav-logo:hover { color: var(--text-primary); }
+    .nav-logo .dot { color: var(--amber); }
+
+    .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+        align-items: center;
+    }
+    .nav-links a {
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-cta {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--amber) !important;
+        border: 1px solid var(--amber-dim);
+        padding: 6px 16px;
+        border-radius: 4px;
+        transition: background 0.2s var(--ease) !important;
+    }
+    .nav-cta:hover {
+        background: var(--amber-dim) !important;
+        color: #fff !important;
+    }
+
+    /* ── LAYOUT ── */
+    main {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 112px 48px 80px;
+    }
+
+    /* ── TERMINAL PROMPT ── */
+    .hero-prompt {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        margin-bottom: 28px;
+        letter-spacing: 0.3px;
+    }
+    .hero-prompt .path { color: var(--green); }
+    .hero-prompt .cmd { color: var(--text-secondary); }
+
+    /* ── SECTION LABEL / EYEBROW ── */
+    .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 20px;
+    }
+    .section-label::after {
+        content: "";
+        width: 40px;
+        height: 1px;
+        background: var(--amber-dim);
+    }
+
+    /* ── HERO GRID ── */
+    .booklet-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 180px;
+        gap: 32px;
+        align-items: start;
+        margin-bottom: 0;
+    }
+
+    .booklet-headline {
+        font-size: clamp(44px, 6vw, 72px);
+        font-weight: 700;
+        line-height: 0.95;
+        letter-spacing: -2px;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+    }
+    .booklet-headline .dot { color: var(--amber); }
+
+    .booklet-subhead {
+        font-size: clamp(15px, 1.8vw, 20px);
+        color: var(--amber);
+        line-height: 1.4;
+        margin-bottom: 24px;
+        font-weight: 300;
+    }
+
+    .booklet-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        font-weight: 300;
+        line-height: 1.85;
+        margin-bottom: 32px;
+    }
+
+    .booklet-cta {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .trust-line {
+        font-size: 11px;
+        color: var(--text-muted);
+        letter-spacing: 0.3px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        background: var(--amber);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: var(--font);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        transition: background 0.2s var(--ease);
+    }
+    .btn-primary:hover {
+        background: var(--amber-light);
+        color: #fff;
+    }
+
+    /* ── COVER THUMBNAIL ── */
+    .booklet-cover {
+        border: 1px solid var(--border-strong);
+        border-radius: 3px;
+        padding: 16px 14px;
+        height: 252px;
+        width: 180px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        font-size: 11px;
+        line-height: 1.4;
+        background: var(--bg-primary);
+        flex-shrink: 0;
+    }
+
+    /* Swap slot: replace .cover-composition with <img> when print photo is available */
+    .cover-composition {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .cover-prompt {
+        font-size: 11px;
+        margin-bottom: 18px;
+        line-height: 1.3;
+        color: var(--text-tertiary);
+    }
+    .cover-prompt .path { color: var(--green); }
+    .cover-prompt .cmd { color: var(--text-secondary); }
+
+    .cover-title {
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 0.95;
+        color: var(--text-primary);
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
+    }
+    .cover-title .dot { color: var(--amber); }
+
+    .cover-subhead {
+        font-size: 11px;
+        color: var(--amber);
+        line-height: 1.35;
+        margin-bottom: auto;
+    }
+
+    .cover-byline {
+        font-size: 11px;
+        color: var(--text-secondary);
+        margin-top: 14px;
+    }
+
+    .cover-footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        font-size: 11px;
+        color: var(--text-secondary);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 48px 0;
+    }
+
+    /* ── CONTENTS ── */
+    .part-header {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 12px;
+        margin-top: 0;
+    }
+
+    .chapter-list {
+        font-size: 13px;
+        line-height: 2;
+        color: var(--text-primary);
+        margin-bottom: 28px;
+    }
+
+    .chapter-num {
+        opacity: 0.4;
+        display: inline-block;
+        width: 28px;
+        font-size: 12px;
+    }
+
+    /* ── WORKSHOP FOOTER ── */
+    .workshop-link-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .workshop-note {
+        font-size: 12px;
+        color: var(--text-muted);
+    }
+
+    .workshop-link {
+        font-size: 12px;
+        color: var(--amber);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .workshop-link:hover { color: var(--amber-light); }
+
+    /* ── SITE FOOTER ── */
+    footer {
+        border-top: 1px solid var(--border);
+        padding: 32px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        max-width: 860px;
+        margin: 40px auto 0;
+    }
+
+    .footer-left {
+        font-size: 11px;
+        color: var(--text-muted);
+        letter-spacing: 0.3px;
+    }
+    .footer-left .dot { color: var(--amber); }
+
+    .footer-legal {
+        display: flex;
+        gap: 24px;
+    }
+    .footer-legal a {
+        font-size: 11px;
+        color: var(--text-muted);
+        transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: var(--amber); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+        nav { padding: 0 24px; }
+        .nav-links li:not(:last-child) { display: none; }
+
+        main { padding: 88px 24px 60px; }
+
+        .booklet-hero {
+            grid-template-columns: 1fr;
+        }
+
+        .booklet-cover {
+            order: 2;
+            width: 160px;
+            height: 224px;
+        }
+
+        footer { padding: 28px 24px; }
+    }
+
+    @media (max-width: 480px) {
+        nav { padding: 0 16px; }
+        main { padding: 76px 16px 48px; }
+
+        .booklet-cover {
+            width: 140px;
+            height: 196px;
+        }
+
+        footer { padding: 24px 16px; }
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="nav-logo">bettervibe<span class="dot">.</span></a>
+    <ul class="nav-links">
+        <li><a href="/#curriculum">Curriculum</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="https://luma.com/lj9niymo" class="nav-cta">Register →</a></li>
+    </ul>
+</nav>
+
+<main>
+
+    <!-- Terminal line -->
+    <div class="hero-prompt">
+        <span class="path">~/bettervibe</span>
+        <span class="cmd">$ cat agentic-engineering.bible</span>
+    </div>
+
+    <!-- Eyebrow -->
+    <div class="section-label">The Booklet</div>
+
+    <!-- Hero block: two columns on desktop -->
+    <div class="booklet-hero">
+
+        <!-- Left: headline + CTA -->
+        <div>
+            <div class="booklet-headline">
+                vibe<br>
+                coder's<br>
+                guide<span class="dot">.</span>
+            </div>
+
+            <div class="booklet-subhead">
+                to agentic engineering — with AI agents.
+            </div>
+
+            <p class="booklet-desc">
+                33 pages. Three authors. Two years of shipping production code with Claude Code, Cursor, and Codex distilled into ten practices we wish someone had handed us in 2024.
+            </p>
+
+            <div class="booklet-cta">
+                <a href="/public/vibe-coders-guide.pdf" target="_blank" rel="noopener" class="btn-primary">Read it →</a>
+                <span class="trust-line">PDF · 33 pages · no signup</span>
+            </div>
+        </div>
+
+        <!-- Right: cover thumbnail (swap .cover-composition for <img> when print photo is ready) -->
+        <div class="booklet-cover">
+            <div class="cover-composition">
+                <div class="cover-prompt">
+                    <span class="path">~/bv</span><span class="cmd">$ cat guide</span>
+                </div>
+                <div class="cover-title">
+                    vibe<br>coder's<br>guide<span class="dot">.</span>
+                </div>
+                <div class="cover-subhead">
+                    to agentic engineering<br>— with AI agents.
+                </div>
+                <div class="cover-byline">
+                    Charnock · Grusemann · Leyden
+                </div>
+                <div class="cover-footer">
+                    <span>bettervibe.org</span>
+                    <span>v1.0</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- Contents -->
+    <div class="section-label">Contents</div>
+
+    <div class="part-header">Part I — Plan</div>
+    <div class="chapter-list">
+        <div><span class="chapter-num">01</span>Plan Before You Prompt</div>
+        <div><span class="chapter-num">02</span>AGENTS.md / CLAUDE.md</div>
+        <div><span class="chapter-num">03</span>Architecture Over Syntax</div>
+        <div><span class="chapter-num">04</span>Have Empathy for the Agent</div>
+    </div>
+
+    <div class="part-header">Part II — Implement</div>
+    <div class="chapter-list">
+        <div><span class="chapter-num">05</span>Choose Tools For the AI, Not For You</div>
+        <div><span class="chapter-num">06</span>Effort Is Tending Toward Zero</div>
+    </div>
+
+    <div class="part-header">Part III — Review &amp; Sustain</div>
+    <div class="chapter-list">
+        <div><span class="chapter-num">07</span>Build Fast Feedback Loops</div>
+        <div><span class="chapter-num">08</span>Code Reviews</div>
+        <div><span class="chapter-num">09</span>Manage Technical Debt Actively</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Workshop footer link -->
+    <div class="workshop-link-row">
+        <span class="workshop-note">Working through this hands-on — May 13, WERK1 Munich</span>
+        <a href="/" class="workshop-link">Workshop details →</a>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-left">bettervibe<span class="dot">.</span>org · May 2026 · Munich</div>
+    <div class="footer-legal">
+        <a href="/">Home</a>
+        <a href="mailto:dominik.grusemann@gmail.com">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/imprint.html">Imprint</a>
+    </div>
+</footer>
+
+</body>
+</html>
