@@ -3,12 +3,12 @@ interface Props {
     showCta?: boolean;
 }
 const { showCta = true } = Astro.props;
-const homeHash = showCta ? "#hero" : "/#hero";
-const linkPrefix = showCta ? "" : "/";
+const isHome = Astro.url.pathname === "/";
+const linkPrefix = isHome ? "" : "/";
 ---
 
 <nav>
-    <a href={showCta ? "#hero" : "/"} class="nav-logo"
+    <a href={isHome ? "#hero" : "/"} class="nav-logo"
         >bettervibe<span class="dot">.</span><span class="cursor"></span></a
     >
     <ul class="nav-links">
