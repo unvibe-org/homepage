@@ -1,0 +1,138 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+    title: string;
+    description?: string;
+    canonical?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    twitterTitle?: string;
+    twitterDescription?: string;
+    twitterImage?: string;
+    noindex?: boolean;
+    showCta?: boolean;
+    includeManifest?: boolean;
+}
+
+const {
+    title,
+    description,
+    canonical,
+    ogTitle,
+    ogDescription,
+    ogImage,
+    twitterTitle,
+    twitterDescription,
+    twitterImage,
+    noindex = false,
+    showCta = true,
+    includeManifest = false,
+} = Astro.props;
+
+const canonicalUrl = canonical
+    ? canonical
+    : new URL(Astro.url.pathname, Astro.site).toString();
+
+const fullOgImage = ogImage
+    ? ogImage.startsWith("http")
+        ? ogImage
+        : new URL(ogImage, Astro.site).toString()
+    : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+        {description && <meta name="description" content={description} />}
+        {noindex && <meta name="robots" content="noindex" />}
+        <link rel="canonical" href={canonicalUrl} />
+
+        {
+            ogTitle && (
+                <>
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content={canonicalUrl} />
+                    <meta property="og:title" content={ogTitle} />
+                    {ogDescription && (
+                        <meta
+                            property="og:description"
+                            content={ogDescription}
+                        />
+                    )}
+                    {fullOgImage && (
+                        <>
+                            <meta property="og:image" content={fullOgImage} />
+                            <meta property="og:image:width" content="1200" />
+                            <meta property="og:image:height" content="630" />
+                        </>
+                    )}
+                    <meta property="og:locale" content="en_DE" />
+                    <meta property="og:site_name" content="bettervibe" />
+                </>
+            )
+        }
+
+        {
+            twitterTitle && (
+                <>
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name="twitter:title" content={twitterTitle} />
+                    {twitterDescription && (
+                        <meta
+                            name="twitter:description"
+                            content={twitterDescription}
+                        />
+                    )}
+                    {twitterImage && (
+                        <meta
+                            name="twitter:image"
+                            content={
+                                twitterImage.startsWith("http")
+                                    ? twitterImage
+                                    : new URL(
+                                          twitterImage,
+                                          Astro.site,
+                                      ).toString()
+                            }
+                        />
+                    )}
+                </>
+            )
+        }
+
+        <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/public/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/public/favicon-16x16.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/public/apple-touch-icon.png"
+        />
+        {includeManifest && <link rel="manifest" href="/public/site.webmanifest" />}
+        <meta name="theme-color" content="#0D0F11" />
+
+        <slot name="head" />
+    </head>
+    <body>
+        <Header showCta={showCta} />
+        <slot />
+        <Footer />
+    </body>
+</html>

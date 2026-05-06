@@ -1,0 +1,64 @@
+---
+---
+
+<footer>
+    <div class="footer-left">
+        bettervibe<span class="dot">.</span>org · May 2026 · Munich
+    </div>
+    <div class="footer-legal">
+        <a href="mailto:dominik.grusemann@gmail.com">Contact</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/imprint/">Imprint</a>
+        <a href="/llms.txt">llms.txt</a>
+    </div>
+</footer>
+
+<style>
+    footer {
+        padding: 40px 48px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .footer-left {
+        font-size: 11px;
+        color: var(--text-muted);
+        letter-spacing: 0.3px;
+    }
+    .footer-left .dot {
+        color: var(--amber);
+    }
+
+    .footer-legal {
+        display: flex;
+        gap: 24px;
+    }
+    .footer-legal a {
+        font-size: 11px;
+        color: var(--text-muted);
+        text-decoration: none;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+    }
+    .footer-legal a:hover {
+        color: var(--amber);
+    }
+
+    @media (max-width: 900px) {
+        footer {
+            padding: 32px 24px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    @media (max-width: 480px) {
+        footer {
+            padding: 24px 16px;
+        }
+    }
+</style>

@@ -1,0 +1,477 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+    title="A Vibe Coder's Guide — bettervibe"
+    description="33 pages. Three authors. Two years of shipping production code with Claude Code, Cursor, and Codex distilled into nine practices we wish someone had handed us in 2024."
+    canonical="https://bettervibe.org/guide/"
+    ogTitle="A Vibe Coder's Guide to Agentic Engineering"
+    ogDescription="33 pages. Three authors. Two years of shipping production code with Claude Code, Cursor, and Codex distilled into nine practices."
+    ogImage="/public/og-image.png"
+>
+    <main>
+        <div class="hero-prompt">
+            <span class="path">~/bettervibe</span>
+            <span class="cmd">$ cat agentic-engineering.bible</span>
+        </div>
+
+        <div class="section-label">The Guide</div>
+
+        <div class="guide-hero">
+            <div>
+                <div class="guide-headline">
+                    a vibe<br />
+                    coder's<br />
+                    guide<span class="dot">.</span>
+                </div>
+
+                <div class="guide-subhead">to agentic engineering.</div>
+
+                <p class="guide-desc">
+                    33 pages. Three authors. Two years of shipping production
+                    code with Claude Code, Cursor, and Codex distilled into
+                    nine practices we wish someone had handed us in 2024.
+                </p>
+
+                <div class="guide-cta">
+                    <a
+                        href="/public/vibe-coders-guide.pdf"
+                        target="_blank"
+                        rel="noopener"
+                        class="btn-primary">Download it →</a
+                    >
+                </div>
+            </div>
+
+            <div class="guide-cover">
+                <img
+                    src="/public/vibecoders-guide-cover.png"
+                    alt="A Vibe Coder's Guide cover"
+                    width="360"
+                    height="511"
+                />
+            </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="section-label">Updates</div>
+
+        <p class="updates-desc">
+            Future workshop dates and new editions of the guide, when they
+            ship.
+        </p>
+
+        <form id="updates-form" class="updates-form" method="POST">
+            <input
+                type="email"
+                name="fields[email]"
+                class="updates-input"
+                placeholder="you@example.com"
+                required
+                autocomplete="email"
+                aria-label="Email address"
+            />
+            <button type="submit" class="btn-ghost updates-btn"
+                >Subscribe →</button
+            >
+            <input type="hidden" name="ml-submit" value="1" />
+            <input type="hidden" name="anticsrf" value="true" />
+        </form>
+
+        <div
+            id="updates-feedback"
+            class="updates-feedback"
+            role="status"
+            aria-live="polite"
+        >
+        </div>
+
+        <p class="updates-trust">No marketing tax. Unsubscribe anytime.</p>
+
+        <hr class="divider" />
+
+        <div class="section-label">Contents</div>
+
+        <div class="part-header">Part I — Plan</div>
+        <div class="chapter-list">
+            <div><span class="chapter-num">01</span>Plan Before You Prompt</div>
+            <div><span class="chapter-num">02</span>AGENTS.md / CLAUDE.md</div>
+            <div>
+                <span class="chapter-num">03</span>Architecture Over Syntax
+            </div>
+            <div>
+                <span class="chapter-num">04</span>Have Empathy for the Agent
+            </div>
+        </div>
+
+        <div class="part-header">Part II — Implement</div>
+        <div class="chapter-list">
+            <div>
+                <span class="chapter-num">05</span>Choose Tools For the AI, Not
+                For You
+            </div>
+            <div>
+                <span class="chapter-num">06</span>Effort Is Tending Toward Zero
+            </div>
+        </div>
+
+        <div class="part-header">Part III — Review &amp; Sustain</div>
+        <div class="chapter-list">
+            <div>
+                <span class="chapter-num">07</span>Build Fast Feedback Loops
+            </div>
+            <div><span class="chapter-num">08</span>Code Reviews</div>
+            <div>
+                <span class="chapter-num">09</span>Manage Technical Debt Actively
+            </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="workshop-link-row">
+            <span class="workshop-note"
+                >Working through this hands-on — May 13, WERK1 Munich</span
+            >
+            <a href="/" class="workshop-link">Workshop details →</a>
+        </div>
+    </main>
+</BaseLayout>
+
+<script is:inline>
+    (function () {
+        var form = document.getElementById("updates-form");
+        var feedback = document.getElementById("updates-feedback");
+        if (!form) return;
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var email = form.querySelector('[name="fields[email]"]');
+            if (!email.value || !email.validity.valid) {
+                feedback.textContent = "Please enter a valid email address.";
+                feedback.className = "updates-feedback error";
+                return;
+            }
+
+            var btn = form.querySelector(".updates-btn");
+            var originalLabel = btn.textContent;
+            btn.textContent = "Sending…";
+            btn.disabled = true;
+            feedback.className = "updates-feedback";
+            feedback.textContent = "";
+
+            fetch(
+                "https://assets.mailerlite.com/jsonp/2239840/forms/183629273017354022/subscribe",
+                {
+                    method: "POST",
+                    body: new FormData(form),
+                },
+            )
+                .then(function () {
+                    form.style.display = "none";
+                    feedback.textContent = "Subscribed. We'll be in touch.";
+                    feedback.className = "updates-feedback success";
+                })
+                .catch(function () {
+                    feedback.textContent =
+                        "Something went wrong — try again or email us.";
+                    feedback.className = "updates-feedback error";
+                    btn.textContent = originalLabel;
+                    btn.disabled = false;
+                });
+        });
+
+        fetch(
+            "https://assets.mailerlite.com/jsonp/2239840/forms/183629273017354022/takel",
+        );
+    })();
+</script>
+
+<style>
+    main {
+        max-width: 860px;
+        padding: 112px 48px 80px;
+    }
+
+    .hero-prompt {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        margin-bottom: 28px;
+        letter-spacing: 0.3px;
+    }
+    .hero-prompt .path {
+        color: var(--green);
+    }
+    .hero-prompt .cmd {
+        color: var(--text-secondary);
+    }
+
+    .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 20px;
+    }
+    .section-label::after {
+        content: "";
+        width: 40px;
+        height: 1px;
+        background: var(--amber-dim);
+    }
+
+    .guide-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 180px;
+        gap: 32px;
+        align-items: start;
+        margin-bottom: 0;
+    }
+
+    .guide-headline {
+        font-size: clamp(44px, 6vw, 72px);
+        font-weight: 700;
+        line-height: 0.95;
+        letter-spacing: -2px;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+    }
+    .guide-headline .dot {
+        color: var(--amber);
+    }
+
+    .guide-subhead {
+        font-size: clamp(15px, 1.8vw, 20px);
+        color: var(--amber);
+        line-height: 1.4;
+        margin-bottom: 24px;
+        font-weight: 300;
+    }
+
+    .guide-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        font-weight: 300;
+        line-height: 1.85;
+        margin-bottom: 32px;
+    }
+
+    .guide-cta {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .trust-line {
+        font-size: 11px;
+        color: var(--text-muted);
+        letter-spacing: 0.3px;
+    }
+
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        background: var(--amber);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: var(--font);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        transition: background 0.2s var(--ease);
+    }
+    .btn-primary:hover {
+        background: var(--amber-light);
+        color: #fff;
+    }
+
+    .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        background: transparent;
+        border: 1px solid var(--border-strong);
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: var(--font);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition:
+            border-color 0.2s var(--ease),
+            color 0.2s var(--ease);
+    }
+    .btn-ghost:hover {
+        border-color: var(--amber-dim);
+        color: var(--amber);
+    }
+
+    .updates-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        font-weight: 300;
+        line-height: 1.7;
+        margin-bottom: 24px;
+    }
+
+    .updates-form {
+        display: flex;
+        gap: 12px;
+        max-width: 480px;
+        margin-bottom: 16px;
+    }
+
+    .updates-input {
+        flex: 1;
+        min-width: 0;
+        background: transparent;
+        border: 1px solid #4a4d52;
+        border-radius: 4px;
+        padding: 12px 16px;
+        color: var(--text-primary);
+        font-family: var(--font);
+        font-size: 12px;
+        transition: border-color 0.2s var(--ease);
+    }
+    .updates-input::placeholder {
+        color: var(--text-tertiary);
+    }
+    .updates-input:focus {
+        outline: none;
+        border-color: var(--amber-dim);
+    }
+
+    .updates-btn {
+        white-space: nowrap;
+    }
+
+    .updates-feedback {
+        display: none;
+        font-size: 12px;
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+    .updates-feedback.success {
+        display: block;
+        color: var(--text-secondary);
+    }
+    .updates-feedback.error {
+        display: block;
+        color: var(--amber);
+    }
+
+    .updates-trust {
+        font-size: 11px;
+        color: rgba(232, 228, 223, 0.45);
+        letter-spacing: 0.3px;
+    }
+
+    .guide-cover {
+        width: 180px;
+        flex-shrink: 0;
+        border-radius: 3px;
+        overflow: hidden;
+        border: 1px solid var(--border-strong);
+    }
+    .guide-cover img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 48px 0;
+    }
+
+    .part-header {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 12px;
+        margin-top: 0;
+    }
+
+    .chapter-list {
+        font-size: 13px;
+        line-height: 2;
+        color: var(--text-primary);
+        margin-bottom: 28px;
+    }
+
+    .chapter-num {
+        opacity: 0.4;
+        display: inline-block;
+        width: 28px;
+        font-size: 12px;
+    }
+
+    .workshop-link-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .workshop-note {
+        font-size: 12px;
+        color: var(--text-muted);
+    }
+
+    .workshop-link {
+        font-size: 12px;
+        color: var(--amber);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .workshop-link:hover {
+        color: var(--amber-light);
+    }
+
+    @media (max-width: 900px) {
+        main {
+            padding: 88px 24px 60px;
+        }
+        .guide-hero {
+            grid-template-columns: 1fr;
+        }
+        .guide-cover {
+            order: 2;
+            width: 160px;
+        }
+        .updates-form {
+            flex-direction: column;
+        }
+        .updates-btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        main {
+            padding: 76px 16px 48px;
+        }
+        .guide-cover {
+            width: 140px;
+        }
+    }
+</style>

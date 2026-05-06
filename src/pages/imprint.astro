@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Imprint — bettervibe" noindex={true} showCta={false}>
+    <main class="content">
+        <h1>Imprint</h1>
+        <p class="subtitle">Angaben gemäß § 5 TMG</p>
+
+        <h2>Responsible for content</h2>
+        <p>
+            Dominik Grusemann<br />
+            c/o WERK1<br />
+            Atelierstraße 29<br />
+            81671 München<br />
+            Germany
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+            Email: <a href="mailto:dominik.grusemann@gmail.com"
+                >dominik.grusemann@gmail.com</a
+            >
+        </p>
+
+        <h2>Liability for content</h2>
+        <p>
+            The contents of this website have been created with the utmost
+            care. However, we cannot guarantee the accuracy, completeness, or
+            timeliness of the content. As a service provider, we are
+            responsible for our own content on these pages under general law
+            (TMG § 7(1)). However, we are not obligated to monitor transmitted
+            or stored third-party information or to investigate circumstances
+            that indicate illegal activity (TMG §§ 8–10).
+        </p>
+
+        <h2>Liability for links</h2>
+        <p>
+            This site contains links to external third-party websites over
+            whose content we have no influence. We cannot accept any liability
+            for this external content. The respective provider or operator of
+            the linked pages is always responsible for their content.
+        </p>
+    </main>
+</BaseLayout>
+
+<style>
+    .content {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 120px 48px 80px;
+        color: var(--text-secondary);
+        line-height: 1.8;
+    }
+
+    h1 {
+        font-size: clamp(24px, 3vw, 32px);
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: -1px;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-bottom: 48px;
+    }
+
+    h2 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+        letter-spacing: -0.3px;
+        margin-top: 40px;
+        margin-bottom: 12px;
+    }
+
+    .content :global(p),
+    .content :global(li) {
+        font-size: 12px;
+        color: var(--text-secondary);
+        font-weight: 300;
+        line-height: 1.9;
+        margin-bottom: 12px;
+    }
+
+    .content :global(a) {
+        color: var(--amber);
+    }
+    .content :global(a:hover) {
+        color: #e8956f;
+    }
+
+    @media (max-width: 900px) {
+        .content {
+            padding: 100px 24px 60px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .content {
+            padding: 80px 16px 48px;
+        }
+    }
+</style>
