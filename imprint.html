@@ -1,194 +1,318 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Imprint — bettervibe</title>
-<meta name="robots" content="noindex">
-<link rel="icon" type="image/svg+xml" href="/public/favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
-<meta name="theme-color" content="#0D0F11">
-<style>
-  @font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 300 700;
-    font-display: swap;
-    src: url(/public/fonts/jetbrains-mono-latin-ext.woff2) format('woff2');
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-  }
-  @font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 300 700;
-    font-display: swap;
-    src: url(/public/fonts/jetbrains-mono-latin.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
-  :root {
-    --bg-primary: #0D0F11;
-    --bg-secondary: #141719;
-    --bg-card: #1E2227;
-    --amber: #DA7756;
-    --amber-dim: #C4623E;
-    --text-primary: #E8E4DF;
-    --text-secondary: #9B9690;
-    --text-tertiary: #6B6660;
-    --text-muted: #4A4640;
-    --border: rgba(255,255,255,0.06);
-    --border-strong: rgba(255,255,255,0.12);
-    --radius: 8px;
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Imprint — bettervibe</title>
+        <meta name="robots" content="noindex" />
+        <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/public/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/public/favicon-16x16.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/public/apple-touch-icon.png"
+        />
+        <meta name="theme-color" content="#0D0F11" />
+        <style>
+            @font-face {
+                font-family: "JetBrains Mono";
+                font-style: normal;
+                font-weight: 300 700;
+                font-display: swap;
+                src: url(/public/fonts/jetbrains-mono-latin-ext.woff2)
+                    format("woff2");
+                unicode-range:
+                    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+                    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+                    U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0,
+                    U+2113, U+2C60-2C7F, U+A720-A7FF;
+            }
+            @font-face {
+                font-family: "JetBrains Mono";
+                font-style: normal;
+                font-weight: 300 700;
+                font-display: swap;
+                src: url(/public/fonts/jetbrains-mono-latin.woff2)
+                    format("woff2");
+                unicode-range:
+                    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+                    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+            }
+            :root {
+                --bg-primary: #0d0f11;
+                --bg-secondary: #141719;
+                --bg-card: #1e2227;
+                --amber: #da7756;
+                --amber-dim: #c4623e;
+                --text-primary: #e8e4df;
+                --text-secondary: #9b9690;
+                --text-tertiary: #6b6660;
+                --text-muted: #4a4640;
+                --border: rgba(255, 255, 255, 0.06);
+                --border-strong: rgba(255, 255, 255, 0.12);
+                --radius: 8px;
+                --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            }
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+            *,
+            *::before,
+            *::after {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-  body {
-    font-family: 'JetBrains Mono', monospace;
-    background: var(--bg-primary); color: var(--text-secondary);
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.8;
-  }
+            body {
+                font-family: "JetBrains Mono", monospace;
+                background: var(--bg-primary);
+                color: var(--text-secondary);
+                -webkit-font-smoothing: antialiased;
+                line-height: 1.8;
+            }
 
-  a { color: var(--amber); text-decoration: none; transition: color 0.2s; }
-  a:hover { color: #E8956F; }
+            a {
+                color: var(--amber);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+            a:hover {
+                color: #e8956f;
+            }
 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    height: 56px; display: flex; align-items: center; justify-content: space-between;
-    padding: 0 48px;
-    background: rgba(13, 15, 17, 0.85); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 48px;
+                background: rgba(13, 15, 17, 0.85);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+            }
 
-  .nav-logo {
-    font-size: 15px; font-weight: 700; color: var(--text-primary);
-    letter-spacing: -0.5px; text-decoration: none;
-  }
-  .nav-logo .dot { color: var(--amber); }
+            .nav-logo {
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--text-primary);
+                letter-spacing: -0.5px;
+                text-decoration: none;
+            }
+            .nav-logo .dot {
+                color: var(--amber);
+            }
 
-  .nav-links {
-    display: flex; gap: 32px; list-style: none; align-items: center;
-  }
-  .nav-links a {
-    font-size: 11px; font-weight: 400; letter-spacing: 0.8px; text-transform: uppercase;
-    color: var(--text-muted); text-decoration: none; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text-primary); }
+            .nav-links {
+                display: flex;
+                gap: 32px;
+                list-style: none;
+                align-items: center;
+            }
+            .nav-links a {
+                font-size: 11px;
+                font-weight: 400;
+                letter-spacing: 0.8px;
+                text-transform: uppercase;
+                color: var(--text-muted);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+            .nav-links a:hover {
+                color: var(--text-primary);
+            }
 
-  .content {
-    max-width: 720px; margin: 0 auto;
-    padding: 120px 48px 80px;
-  }
+            .content {
+                max-width: 720px;
+                margin: 0 auto;
+                padding: 120px 48px 80px;
+            }
 
-  h1 {
-    font-size: clamp(24px, 3vw, 32px); font-weight: 700;
-    color: var(--text-primary); letter-spacing: -1px;
-    margin-bottom: 8px;
-  }
+            h1 {
+                font-size: clamp(24px, 3vw, 32px);
+                font-weight: 700;
+                color: var(--text-primary);
+                letter-spacing: -1px;
+                margin-bottom: 8px;
+            }
 
-  .subtitle {
-    font-size: 11px; color: var(--text-muted); margin-bottom: 48px;
-  }
+            .subtitle {
+                font-size: 11px;
+                color: var(--text-muted);
+                margin-bottom: 48px;
+            }
 
-  h2 {
-    font-size: 14px; font-weight: 600; color: var(--text-primary);
-    letter-spacing: -0.3px; margin-top: 40px; margin-bottom: 12px;
-  }
+            h2 {
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--text-primary);
+                letter-spacing: -0.3px;
+                margin-top: 40px;
+                margin-bottom: 12px;
+            }
 
-  p, li {
-    font-size: 12px; color: var(--text-secondary); font-weight: 300;
-    line-height: 1.9; margin-bottom: 12px;
-  }
+            p,
+            li {
+                font-size: 12px;
+                color: var(--text-secondary);
+                font-weight: 300;
+                line-height: 1.9;
+                margin-bottom: 12px;
+            }
 
-  ul { padding-left: 20px; margin-bottom: 12px; }
-  li { margin-bottom: 4px; }
+            ul {
+                padding-left: 20px;
+                margin-bottom: 12px;
+            }
+            li {
+                margin-bottom: 4px;
+            }
 
-  footer {
-    padding: 40px 48px;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
-  }
+            footer {
+                padding: 40px 48px;
+                border-top: 1px solid var(--border);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
 
-  .footer-left {
-    font-size: 11px; color: var(--text-muted); letter-spacing: 0.3px;
-  }
-  .footer-left .dot { color: var(--amber); }
+            .footer-left {
+                font-size: 11px;
+                color: var(--text-muted);
+                letter-spacing: 0.3px;
+            }
+            .footer-left .dot {
+                color: var(--amber);
+            }
 
-  .footer-legal {
-    display: flex; gap: 24px;
-  }
-  .footer-legal a {
-    font-size: 11px; color: var(--text-muted); text-decoration: none;
-    letter-spacing: 0.5px; transition: color 0.2s;
-  }
-  .footer-legal a:hover { color: var(--amber); }
+            .footer-legal {
+                display: flex;
+                gap: 24px;
+            }
+            .footer-legal a {
+                font-size: 11px;
+                color: var(--text-muted);
+                text-decoration: none;
+                letter-spacing: 0.5px;
+                transition: color 0.2s;
+            }
+            .footer-legal a:hover {
+                color: var(--amber);
+            }
 
-  @media (max-width: 900px) {
-    nav { padding: 0 24px; }
-    .nav-links li:not(:last-child) { display: none; }
-    .content { padding: 100px 24px 60px; }
-    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
-  }
+            @media (max-width: 900px) {
+                nav {
+                    padding: 0 24px;
+                }
+                .nav-links li:not(:last-child) {
+                    display: none;
+                }
+                .content {
+                    padding: 100px 24px 60px;
+                }
+                footer {
+                    padding: 32px 24px;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
 
-  @media (max-width: 480px) {
-    nav { padding: 0 16px; }
-    .content { padding: 80px 16px 48px; }
-    footer { padding: 24px 16px; }
-  }
-</style>
-</head>
-<body>
+            @media (max-width: 480px) {
+                nav {
+                    padding: 0 16px;
+                }
+                .content {
+                    padding: 80px 16px 48px;
+                }
+                footer {
+                    padding: 24px 16px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="/" class="nav-logo"
+                >bettervibe<span class="dot">.</span></a
+            >
+            <ul class="nav-links">
+                <li><a href="/#curriculum">Curriculum</a></li>
+                <li><a href="/#pricing">Pricing</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+            </ul>
+        </nav>
 
-<nav>
-  <a href="/" class="nav-logo">bettervibe<span class="dot">.</span></a>
-  <ul class="nav-links">
-    <li><a href="/#curriculum">Curriculum</a></li>
-    <li><a href="/#pricing">Pricing</a></li>
-    <li><a href="/#faq">FAQ</a></li>
-  </ul>
-</nav>
+        <main class="content">
+            <h1>Imprint</h1>
+            <p class="subtitle">Angaben gem&auml;&szlig; &sect; 5 TMG</p>
 
-<main class="content">
-  <h1>Imprint</h1>
-  <p class="subtitle">Angaben gem&auml;&szlig; &sect; 5 TMG</p>
+            <h2>Responsible for content</h2>
+            <p>
+                bettervibe<br />
+                Dominik Grusemann<br />
+                c/o WERK1<br />
+                Atelierstra&szlig;e 29<br />
+                81671 M&uuml;nchen<br />
+                Germany
+            </p>
 
-  <h2>Responsible for content</h2>
-  <p>
-    Dominik Grusemann<br>
-    c/o WERK1<br>
-    Atelierstra&szlig;e 29<br>
-    81671 M&uuml;nchen<br>
-    Germany
-  </p>
+            <h2>Contact</h2>
+            <p>
+                Email:
+                <a href="mailto:dominik.grusemann@gmail.com"
+                    >dominik.grusemann@gmail.com</a
+                >
+            </p>
 
-  <h2>Contact</h2>
-  <p>
-    Email: <a href="mailto:dominik.grusemann@gmail.com">dominik.grusemann@gmail.com</a>
-  </p>
+            <h2>Liability for content</h2>
+            <p>
+                The contents of this website have been created with the utmost
+                care. However, we cannot guarantee the accuracy, completeness,
+                or timeliness of the content. As a service provider, we are
+                responsible for our own content on these pages under general law
+                (TMG &sect; 7(1)). However, we are not obligated to monitor
+                transmitted or stored third-party information or to investigate
+                circumstances that indicate illegal activity (TMG &sect;&sect;
+                8&ndash;10).
+            </p>
 
-  <h2>Liability for content</h2>
-  <p>
-    The contents of this website have been created with the utmost care. However, we cannot guarantee the accuracy, completeness, or timeliness of the content. As a service provider, we are responsible for our own content on these pages under general law (TMG &sect; 7(1)). However, we are not obligated to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity (TMG &sect;&sect; 8&ndash;10).
-  </p>
+            <h2>Liability for links</h2>
+            <p>
+                This site contains links to external third-party websites over
+                whose content we have no influence. We cannot accept any
+                liability for this external content. The respective provider or
+                operator of the linked pages is always responsible for their
+                content.
+            </p>
+        </main>
 
-  <h2>Liability for links</h2>
-  <p>
-    This site contains links to external third-party websites over whose content we have no influence. We cannot accept any liability for this external content. The respective provider or operator of the linked pages is always responsible for their content.
-  </p>
-</main>
-
-<footer>
-  <div class="footer-left">bettervibe<span class="dot">.</span>org &middot; May 2026 &middot; Munich</div>
-  <div class="footer-legal">
-    <a href="/">Home</a>
-    <a href="mailto:dominik.grusemann@gmail.com">Contact</a>
-    <a href="/privacy.html">Privacy</a>
-  </div>
-</footer>
-
-</body>
+        <footer>
+            <div class="footer-left">
+                bettervibe<span class="dot">.</span>org &middot; May 2026
+                &middot; Munich
+            </div>
+            <div class="footer-legal">
+                <a href="/">Home</a>
+                <a href="mailto:dominik.grusemann@gmail.com">Contact</a>
+                <a href="/privacy.html">Privacy</a>
+            </div>
+        </footer>
+    </body>
 </html>
