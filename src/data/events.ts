@@ -42,9 +42,9 @@ const upcomingPricing: PricingTier[] = [
 
 export const events: WorkshopEvent[] = [
   {
-    slug: "2026-07-17-munich",
-    date: "2026-07-17",
-    dateDisplay: "July 17, 2026",
+    slug: "2026-07-24-munich",
+    date: "2026-07-24",
+    dateDisplay: "July 24, 2026",
     dayOfWeek: "Friday",
     time: "12:00 PM – 6:00 PM CEST",
     venue: "WERK1, Munich",
