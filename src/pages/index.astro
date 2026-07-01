@@ -86,6 +86,24 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
                 </div>
             )}
         </div>
+
+        {/*
+          EARLY SOCIAL PROOF — attendee-company logos, pinned to the bottom of
+          the hero so they peek above the fold (credibility on arrival) without
+          competing with the headline + CTA. Nominative use: these are past
+          attendees' EMPLOYERS, not clients/sponsors — hence "Engineers from",
+          not "Trusted by". Companies validated in
+          workshops/research/signals/2026-05-13-luma-registrations.md.
+        */}
+        <div class="hero-logos">
+            <p class="logo-strip-label">Engineers from teams at</p>
+            <div class="logo-strip-grid">
+                <img src="/public/logos/infineon.svg" alt="Infineon" />
+                <img src="/public/logos/bsh.svg" alt="BSH Hausgeräte" />
+                <img src="/public/logos/cocrafter.png" alt="CoCrafter" />
+                <img src="/public/logos/qplix.svg" alt="QPLIX" class="logo-stacked" />
+            </div>
+        </div>
     </section>
 
     <section id="problem">
@@ -816,9 +834,9 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
     /* HERO */
     #hero {
         min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 120px 48px 80px;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        padding: 120px 48px 40px;
         border-top: none;
         position: relative;
         overflow: hidden;
@@ -838,6 +856,7 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
     }
     .hero-inner {
         max-width: 760px;
+        align-self: center;
     }
     .hero-prompt {
         font-size: 12px;
@@ -1459,6 +1478,39 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
         font-size: 11px;
         color: var(--text-muted);
         margin-top: 2px;
+    }
+    .hero-logos {
+        padding-top: 28px;
+        border-top: 1px solid var(--border);
+    }
+    .logo-strip-label {
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 18px;
+        text-align: center;
+    }
+    .logo-strip-grid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+    }
+    .logo-strip-grid img {
+        height: 24px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        opacity: 0.5;
+        transition: opacity 0.2s var(--ease);
+    }
+    /* Stacked/square lockups need extra height to match wordmark weight */
+    .logo-strip-grid img.logo-stacked {
+        height: 40px;
+    }
+    .logo-strip-grid img:hover {
+        opacity: 0.85;
     }
 
     /* FAQ */
