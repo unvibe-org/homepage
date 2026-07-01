@@ -471,8 +471,8 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
               ANCHOR TESTIMONIAL — PENDING ALEX KLIOTZKIN'S CONSENT.
               Before this ships to production, confirm with Alex:
                 - the "500+ repos" figure is OK to state publicly (or soften to "hundreds of repos")
-                - exact title + how he wants his current role described
-                - company attribution (former Infineon) and a headshot for the card
+                - final sign-off on the title/company line + public use of his headshot
+              Title updated: he has since left Infineon → "Ex-Director of Engineering · Infineon".
               Source: workshops/2-marketing/testimonials/tracker.md (status: sent-for-approval)
             */}
             <div class="quote-card featured">
@@ -485,8 +485,17 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
                     back building in an AI-friendly way — we used it to migrate
                     500+ repos at scale."
                 </blockquote>
-                <div class="author">Alex Kliotzkin</div>
-                <div class="role">Engineering Manager · Infineon</div>
+                <div class="quote-attribution">
+                    <img
+                        src="/public/alex-kliotzkin.jpg"
+                        alt="Alex Kliotzkin"
+                        class="quote-avatar"
+                    />
+                    <div>
+                        <div class="author">Alex Kliotzkin</div>
+                        <div class="role">Ex-Director of Engineering · Infineon</div>
+                    </div>
+                </div>
             </div>
 
             {/*
@@ -1548,6 +1557,18 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
         font-size: 17px;
         line-height: 1.9;
         color: var(--text-primary);
+    }
+    .quote-attribution {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+    .quote-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
     }
     .testimonial-grid {
         display: grid;
