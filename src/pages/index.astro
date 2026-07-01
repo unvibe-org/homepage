@@ -441,9 +441,68 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
         </div>
     </section>
 
+    <section id="testimonials">
+        <div class="max-w">
+            <div class="section-label">07 — Testimonials</div>
+            <h2 class="section-title">What people took away.</h2>
+            <p class="section-desc">
+                Feedback from the first workshop — Munich, May 2026.
+            </p>
+
+            {/*
+              ANCHOR TESTIMONIAL — PENDING ALEX KLIOTZKIN'S CONSENT.
+              Before this ships to production, confirm with Alex:
+                - the "500+ repos" figure is OK to state publicly (or soften to "hundreds of repos")
+                - exact title + how he wants his current role described
+                - company attribution (former Infineon) and a headshot for the card
+              Source: workshops/2-marketing/testimonials/tracker.md (status: sent-for-approval)
+            */}
+            <div class="quote-card featured">
+                <blockquote>
+                    "There's so much noise around agentic AI, and a lot of
+                    pressure to use it well — the hard part is telling the noise
+                    from the actual value. What convinced me was having engineers
+                    who've gone deep in the tech and teach tool-agnostic
+                    fundamentals you can carry into day-to-day work. My team came
+                    back building in an AI-friendly way — we used it to migrate
+                    500+ repos at scale."
+                </blockquote>
+                <div class="author">Alex Kliotzkin</div>
+                <div class="role">Engineering Manager · Infineon</div>
+            </div>
+
+            {/*
+              Placeholder developer proof — anonymous quotes from the May 2026
+              survey (workshops/2-marketing/testimonials/tracker.md, raw quote bank).
+              Kept honestly anonymous. Replace with attributed, consented developer
+              testimonials as they land (Stefan / Franz / Albina / Deniz / Achim).
+            */}
+            <div class="testimonial-grid">
+                <div class="quote-card">
+                    <blockquote>
+                        "Very valuable knowledge. Your problem description is spot
+                        on for what probably 95% of devs experience every single
+                        day."
+                    </blockquote>
+                    <div class="author">Workshop participant</div>
+                    <div class="role">Munich · May 2026</div>
+                </div>
+                <div class="quote-card">
+                    <blockquote>
+                        "I learned a lot, especially applying it directly to a
+                        project. The guide book is really handy for looking things
+                        up."
+                    </blockquote>
+                    <div class="author">Workshop participant</div>
+                    <div class="role">Munich · May 2026</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="pricing">
         <div class="max-w">
-            <div class="section-label">07 — Pricing</div>
+            <div class="section-label">08 — Pricing</div>
             {hasUpcoming ? (
                 <>
                     <h2 class="section-title">Reserve your spot.</h2>
@@ -523,7 +582,7 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
 
     <section id="faq">
         <div class="max-w">
-            <div class="section-label">08 — FAQ</div>
+            <div class="section-label">09 — FAQ</div>
             <h2 class="section-title">Quick answers.</h2>
 
             <div class="faq-grid">
@@ -585,7 +644,7 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
 
     <section id="updates">
         <div class="max-w">
-            <div class="section-label">09 — Updates</div>
+            <div class="section-label">10 — Updates</div>
             <h2 class="section-title">Stay in the loop.</h2>
             <p class="section-desc" style="margin-bottom: 32px">
                 Get notified about future dates, early-bird pricing, and new
@@ -632,7 +691,7 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
 
     <section id="sponsors">
         <div class="max-w">
-            <div class="section-label">10 — Sponsors</div>
+            <div class="section-label">11 — Sponsors</div>
             <h2 class="section-title">Backed by builders.</h2>
             <p class="section-desc" style="margin-bottom: 32px">
                 Companies that share our belief in shipping AI-assisted code
@@ -1460,6 +1519,23 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
         color: var(--text-muted);
         margin-top: 2px;
     }
+    #testimonials {
+        background: var(--bg-primary);
+    }
+    .quote-card.featured {
+        margin-top: 48px;
+    }
+    .quote-card.featured blockquote {
+        font-size: 17px;
+        line-height: 1.9;
+        color: var(--text-primary);
+    }
+    .testimonial-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 16px;
+    }
 
     /* FAQ */
     #faq {
@@ -1702,7 +1778,8 @@ const metaDescShort = `The agentic engineering workshop. Go beyond vibe coding. 
         .instructor-grid,
         .pricing-layout,
         .community-inner,
-        .faq-grid {
+        .faq-grid,
+        .testimonial-grid {
             grid-template-columns: 1fr;
         }
         .track-grid {
