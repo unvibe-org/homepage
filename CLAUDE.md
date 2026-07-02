@@ -1,4 +1,4 @@
-#  Homepage for bettervibe.org
+#  Homepage for unvibe.org
 
 - *Tech Stack:* Astro (static output)
 

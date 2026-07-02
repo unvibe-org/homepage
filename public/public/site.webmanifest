@@ -1,6 +1,6 @@
 {
-  "name": "bettervibe",
-  "short_name": "bettervibe",
+  "name": "unvibe",
+  "short_name": "unvibe",
   "description": "Write production-ready code with AI. Avoiding the vibe coding hangover.",
   "icons": [
     { "src": "/public/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
