@@ -41,18 +41,20 @@ const upcomingPricing: PricingTier[] = [
 ];
 
 export const events: WorkshopEvent[] = [
-  {
-    slug: "2026-07-24-munich",
-    date: "2026-07-24",
-    dateDisplay: "July 24, 2026",
-    dayOfWeek: "Friday",
-    time: "12:00 PM – 6:00 PM CEST",
-    venue: "WERK1, Munich",
-    city: "Munich",
-    lumaUrl: "https://luma.com/fc92s7r4",
-    pricing: upcomingPricing,
-    sponsors,
-  },
+  // Temporarily removed while we rework positioning toward per-workshop
+  // corporate pricing. Uncomment to bring the public July 24 event back.
+  // {
+  //   slug: "2026-07-24-munich",
+  //   date: "2026-07-24",
+  //   dateDisplay: "July 24, 2026",
+  //   dayOfWeek: "Friday",
+  //   time: "12:00 PM – 6:00 PM CEST",
+  //   venue: "WERK1, Munich",
+  //   city: "Munich",
+  //   lumaUrl: "https://luma.com/fc92s7r4",
+  //   pricing: upcomingPricing,
+  //   sponsors,
+  // },
   {
     slug: "2026-05-13-munich",
     date: "2026-05-13",
