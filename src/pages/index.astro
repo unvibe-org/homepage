@@ -7,12 +7,14 @@ const pastEvents = getPastEvents();
 const hasUpcoming = nextEvent !== null;
 const lastEvent = pastEvents[0] ?? null;
 
-const metaDesc = `We bring hands-on AI coding workshops to your engineering team. Go beyond vibe coding — ship production-ready code with AI agents. On-site or remote.`;
+const metaDesc = `Hands-on AI coding workshops for engineering teams. One day, on your codebase, with Claude Code or Codex. On-site or remote.`;
 const metaDescShort = `AI coding workshops for engineering teams. On-site or remote.`;
 
 // Corporate booking is the single conversion path while positioning is
 // per-workshop (no public per-seat tickets on the page for now).
-const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURIComponent("Workshop for our team")}`;
+// TODO (docs/homepage-research-2026-07-09.md §3.1-2): switch to hello@unvibe.org
+// + an embedded scheduler once the mailbox / Cal.com account exist.
+const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURIComponent("Workshop for our team")}&body=${encodeURIComponent("Team size:\nPreferred dates:\nOn-site or remote:\n")}`;
 ---
 
 <BaseLayout
@@ -27,7 +29,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
     twitterImage="https://unvibe.org/public/twitter-card.png?v=2"
     includeManifest={true}
     ctaUrl={bookMailto}
-    ctaLabel="Book a workshop →"
+    ctaLabel="Get a quote →"
     footerLine={undefined}
 >
     <section id="hero">
@@ -42,18 +44,19 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                 unvibe<span class="dot">.</span>
             </div>
             <h1 class="hero-tagline">
-                AI coding workshops for engineering&nbsp;teams.
+                From vibe coding to agentic&nbsp;engineering.
             </h1>
 
             <p class="hero-desc">
-                We bring the workshop to your team. One hands-on day, your
-                engineers directing AI agents with real discipline — and
-                shipping code that holds up in production.
+                A one-day, hands-on workshop for up to 20 of your engineers,
+                on your own codebase, with Claude Code or Codex. On-site or
+                remote. Your team leaves with workflows they use the next
+                morning.
             </p>
 
             <div class="hero-actions">
-                <a href={bookMailto} class="btn-primary">Book a workshop →</a>
-                <a href="#courses" class="btn-ghost" data-course-switch="advanced">Advanced workshop · waitlist</a>
+                <a href={bookMailto} class="btn-primary">Get a quote →</a>
+                <a href="/guide/" class="btn-ghost">Get the free guide →</a>
             </div>
 
             {hasUpcoming && (
@@ -95,7 +98,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
     <section id="courses">
         <div class="max-w">
             <div class="section-label">Workshops</div>
-            <h2 class="section-title">Two workshops. One discipline.</h2>
+            <h2 class="section-title">The workshops.</h2>
 
             <div class="course-tabs" role="tablist" aria-label="Courses">
                 <button
@@ -106,9 +109,11 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                     aria-controls="panel-foundations"
                 >
                     <span class="course-tab-title">AI Coding for Software Engineers</span>
-                    <span class="course-tab-badge live">
-                        {hasUpcoming ? `Next: ${nextEvent.dateDisplay}` : "Dates TBA"}
-                    </span>
+                    {hasUpcoming && (
+                        <span class="course-tab-badge live">
+                            Next open session: {nextEvent.dateDisplay}
+                        </span>
+                    )}
                 </button>
                 <button
                     class="course-tab"
@@ -118,7 +123,6 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                     aria-controls="panel-advanced"
                 >
                     <span class="course-tab-title">Advanced AI Coding</span>
-                    <span class="course-tab-badge soon">v2 · In development</span>
                 </button>
             </div>
 
@@ -129,13 +133,13 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                 aria-labelledby="tab-foundations"
             >
                 <p class="course-pitch">
-                    The workshop that takes your team from vibe coding to agentic
-                    engineering. Your codebase, your problems, our instructors
-                    alongside — techniques they use the next day.
+                    One hands-on day on your codebase. Your engineers practice
+                    directing agents on real work from your backlog, with an
+                    instructor alongside. No slideware, no sample project.
                 </p>
 
                 <div class="learn-grid">
-                    <div class="learn-item">Context engineering: CLAUDE.md and skills that actually work</div>
+                    <div class="learn-item">Context engineering: CLAUDE.md files and skills your agents follow</div>
                     <div class="learn-item">Driving agents to consistent, high-quality output</div>
                     <div class="learn-item">Splitting work so the agent never drowns its context</div>
                     <div class="learn-item">Test loops and review workflows that keep up with AI-speed PRs</div>
@@ -145,20 +149,20 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
 
                 <div class="format-strip">
                     <div class="format-step">
-                        <span class="time">12:00</span>
-                        <span class="what">Foundations intro</span>
+                        <span class="what">Foundations, setup on your stack</span>
                     </div>
                     <span class="format-arrow">→</span>
                     <div class="format-step">
-                        <span class="time">13:00</span>
-                        <span class="what">Hands-on project time</span>
+                        <span class="what">Hands-on: your codebase, instructors alongside</span>
                     </div>
                     <span class="format-arrow">→</span>
                     <div class="format-step">
-                        <span class="time">17:00</span>
-                        <span class="what">Networking + beers</span>
+                        <span class="what">Wrap-up: what your team adopts on Monday</span>
                     </div>
                 </div>
+                <p class="agenda-note">
+                    The shape of the day. We tailor it to your team.
+                </p>
 
                 <div class="course-booking">
                     <div class="course-facts">
@@ -182,7 +186,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                 </div>
 
                 <div class="course-actions">
-                    <a href={bookMailto} class="btn-primary">Book a workshop →</a>
+                    <a href={bookMailto} class="btn-primary">Get a quote →</a>
                     <a href="/guide/" class="btn-ghost">Download the free guide →</a>
                 </div>
             </div>
@@ -195,54 +199,113 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                 hidden
             >
                 <p class="course-pitch">
-                    The v2 workshop for engineers who own the fundamentals. Go
-                    from directing one agent to orchestrating many — and scale
-                    the discipline across your team.
+                    For engineers who already own the fundamentals. Go from
+                    directing one agent to orchestrating many, and scale the
+                    discipline across your whole team.
                 </p>
 
                 <div class="learn-grid">
                     <div class="learn-item">Multi-agent orchestration and parallel workflows</div>
                     <div class="learn-item">Custom harnesses, hooks, and automation pipelines</div>
-                    <div class="learn-item">Long-running autonomous agents you can actually trust</div>
+                    <div class="learn-item">Long-running autonomous agents you can leave unattended</div>
                     <div class="learn-item">Rolling agentic engineering out across a team</div>
                 </div>
 
-                <div class="waitlist-box">
-                    <p class="waitlist-note">
-                        Currently in development. Waitlist members get early
-                        access and launch pricing.
-                    </p>
-                    <form class="signup-form ml-form" method="POST">
-                        <div class="signup-prompt">
-                            <span class="signup-path">~/advanced</span>&nbsp;$&nbsp;
+                <div class="format-strip">
+                    <div class="format-step">
+                        <span class="what">Orchestration foundations</span>
+                    </div>
+                    <span class="format-arrow">→</span>
+                    <div class="format-step">
+                        <span class="what">Hands-on: multi-agent workflows on your codebase</span>
+                    </div>
+                    <span class="format-arrow">→</span>
+                    <div class="format-step">
+                        <span class="what">Wrap-up: rolling it out across your team</span>
+                    </div>
+                </div>
+                <p class="agenda-note">
+                    The shape of the day. We tailor it to your team.
+                </p>
+
+                <div class="course-booking">
+                    <div class="course-facts">
+                        <div class="fact">
+                            <span class="key">Format</span>
+                            <span class="val amber">Private workshop for your team</span>
                         </div>
-                        <div class="signup-input-wrap">
-                            <input
-                                type="email"
-                                name="fields[email]"
-                                class="signup-input"
-                                placeholder="your@email.dev"
-                                required
-                                autocomplete="email"
-                                aria-label="Email address"
-                            />
-                            <button type="submit" class="btn-ghost signup-btn">
-                                join waitlist
-                            </button>
+                        <div class="fact">
+                            <span class="key">Level</span>
+                            <span class="val">Assumes agentic fundamentals</span>
                         </div>
-                        <input type="hidden" name="ml-submit" value="1" />
-                        <input type="hidden" name="anticsrf" value="true" />
-                    </form>
-                    <div class="signup-feedback"></div>
-                    <p class="signup-consent">
-                        By subscribing you agree to our
-                        <a href="/privacy/">privacy policy</a>. We store your
-                        email with
-                        <a href="https://www.mailerlite.com" target="_blank" rel="noopener">MailerLite</a>
-                        (EU-based) and you can unsubscribe anytime.
-                    </p>
+                        <div class="fact">
+                            <span class="key">Size</span>
+                            <span class="val">Up to 20 engineers</span>
+                        </div>
+                        <div class="fact">
+                            <span class="key">Where</span>
+                            <span class="val">On-site or remote</span>
+                        </div>
+                        <div class="fact">
+                            <span class="key">Pricing</span>
+                            <span class="val">Per workshop — get a quote</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-actions">
+                    <a href={bookMailto} class="btn-primary">Get a quote →</a>
+                    <a href="/guide/" class="btn-ghost">Download the free guide →</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="max-w">
+            <div class="section-label">Testimonial</div>
+            <h2 class="section-title">From the first edition.</h2>
+
+            {/*
+              Anchor testimonial. Consent received from Alex Kliotzkin (2026-07-01):
+              title kept as "Director of Engineering · Infineon" (his call, for
+              marketing), figure softened to "hundreds of repos", headshot approved.
+              Em dashes removed at his request so it reads like a real quote.
+              Quote text is consented verbatim — do not edit.
+              Source: workshops/2-marketing/testimonials/tracker.md
+            */}
+            <div class="quote-card featured">
+                <blockquote>
+                    "There's so much noise around agentic AI, and a lot of
+                    pressure to use it well. The hard part is telling the noise
+                    from the actual value. What convinced me was having engineers
+                    who've gone deep in the tech and teach tool-agnostic
+                    fundamentals you can carry into day-to-day work. My team came
+                    back building in an AI-friendly way, and we used it to migrate
+                    hundreds of repos at scale."
+                </blockquote>
+                <div class="quote-attribution">
+                    <img
+                        src="/public/alex-kliotzkin.jpg"
+                        alt="Alex Kliotzkin"
+                        class="quote-avatar"
+                    />
+                    <div>
+                        <div class="author">Alex Kliotzkin</div>
+                        <div class="role">Director of Engineering · Infineon</div>
+                    </div>
+                </div>
+            </div>
+
+            {lastEvent && (
+                <p class="past-line">
+                    First edition: {lastEvent.dateDisplay} · {lastEvent.venue}
+                    {lastEvent.attendeeCount && ` · ${lastEvent.attendeeCount} engineers`}
+                    {lastEvent.recap && (
+                        <> · <a href={lastEvent.recap}>See recap →</a></>
+                    )}
+                </p>
+            )}
         </div>
     </section>
 
@@ -262,7 +325,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                 </div>
                 <div class="why-item">
                     <h3>Output you can't control</h3>
-                    <p>Same prompt, different architecture — every run.</p>
+                    <p>Same prompt, different architecture, every run.</p>
                 </div>
                 <div class="why-item">
                     <h3>Context collapse</h3>
@@ -284,24 +347,27 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
     <section id="audience">
         <div class="max-w">
             <div class="section-label">Who it's for</div>
-            <h2 class="section-title">Built for people who ship code.</h2>
+            <h2 class="section-title">Who to send.</h2>
 
             <div class="audience-cols">
                 <div class="audience-card yes">
-                    <h3>✓ For you if</h3>
+                    <h3>✓ Send engineers who</h3>
                     <ul class="audience-list">
-                        <li>You write code daily — job or side projects</li>
-                        <li>You've used Claude Code, Cursor, or similar</li>
-                        <li>You can read a diff and spot when it's wrong</li>
-                        <li>You want techniques to apply the next day</li>
+                        <li>Write code daily</li>
+                        <li>Can read a diff and spot when it's wrong</li>
+                        <li>Want techniques to apply the next day</li>
                     </ul>
+                    <p class="audience-note">
+                        Prior agent experience helps but isn't required. We
+                        cover tool fundamentals in the intro.
+                    </p>
                 </div>
                 <div class="audience-card no">
-                    <h3>✕ Not for you if</h3>
+                    <h3>✕ Not a fit</h3>
                     <ul class="audience-list">
-                        <li>You've never written or read code</li>
-                        <li>You want a no-code / Lovable-style workflow</li>
-                        <li>You want theory without hands-on practice</li>
+                        <li>Non-engineers</li>
+                        <li>Teams after a no-code / Lovable-style workflow</li>
+                        <li>Anyone wanting theory without hands-on practice</li>
                     </ul>
                 </div>
             </div>
@@ -311,8 +377,8 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
     <section id="instructors">
         <div class="max-w">
             <div class="section-label">Instructors</div>
-            <h2 class="section-title">Practitioners, not academics.</h2>
-            <p class="section-desc">All four ship production code with AI daily.</p>
+            <h2 class="section-title">The people teaching it ship code for a living.</h2>
+            <p class="section-desc">All four use Claude Code and Codex in their own companies, daily.</p>
 
             <div class="instructor-grid">
                 <div class="instructor-card">
@@ -407,54 +473,6 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
         </div>
     </section>
 
-    <section id="testimonials">
-        <div class="max-w">
-            <div class="section-label">Testimonials</div>
-            <h2 class="section-title">What people took away.</h2>
-
-            {/*
-              Anchor testimonial. Consent received from Alex Kliotzkin (2026-07-01):
-              title kept as "Director of Engineering · Infineon" (his call, for
-              marketing), figure softened to "hundreds of repos", headshot approved.
-              Em dashes removed at his request so it reads like a real quote.
-              Quote text is consented verbatim — do not edit.
-              Source: workshops/2-marketing/testimonials/tracker.md
-            */}
-            <div class="quote-card featured">
-                <blockquote>
-                    "There's so much noise around agentic AI, and a lot of
-                    pressure to use it well. The hard part is telling the noise
-                    from the actual value. What convinced me was having engineers
-                    who've gone deep in the tech and teach tool-agnostic
-                    fundamentals you can carry into day-to-day work. My team came
-                    back building in an AI-friendly way, and we used it to migrate
-                    hundreds of repos at scale."
-                </blockquote>
-                <div class="quote-attribution">
-                    <img
-                        src="/public/alex-kliotzkin.jpg"
-                        alt="Alex Kliotzkin"
-                        class="quote-avatar"
-                    />
-                    <div>
-                        <div class="author">Alex Kliotzkin</div>
-                        <div class="role">Director of Engineering · Infineon</div>
-                    </div>
-                </div>
-            </div>
-
-            {lastEvent && (
-                <p class="past-line">
-                    First edition: {lastEvent.dateDisplay} · {lastEvent.venue}
-                    {lastEvent.attendeeCount && ` · ${lastEvent.attendeeCount} engineers`}
-                    {lastEvent.recap && (
-                        <> · <a href={lastEvent.recap}>See recap →</a></>
-                    )}
-                </p>
-            )}
-        </div>
-    </section>
-
     <section id="faq">
         <div class="max-w">
             <div class="section-label">FAQ</div>
@@ -513,7 +531,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
     <section id="updates">
         <div class="max-w">
             <div class="section-label">Updates</div>
-            <h2 class="section-title">Stay in the loop.</h2>
+            <h2 class="section-title">Hear about open sessions first.</h2>
             <p class="section-desc" style="margin-bottom: 32px">
                 Open sessions, the Advanced AI Coding launch, and occasional
                 field notes.
@@ -559,7 +577,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
 
     <section id="sponsors">
         <div class="max-w">
-            <p class="logo-strip-label">Backed by builders</p>
+            <p class="logo-strip-label">Partners who supported our first open session</p>
             <div class="sponsor-grid">
                 {(nextEvent?.sponsors ?? pastEvents[0]?.sponsors ?? []).map((s) => (
                     <a
@@ -589,10 +607,8 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
             <div
                 style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;"
             >
-                <a href={bookMailto} class="btn-primary">Book a workshop →</a>
-                <a href="#courses" class="btn-ghost" data-course-switch="advanced"
-                    >Advanced workshop · waitlist</a
-                >
+                <a href={bookMailto} class="btn-primary">Get a quote →</a>
+                <a href="/guide/" class="btn-ghost">Get the free guide →</a>
             </div>
         </div>
     </section>
@@ -1019,6 +1035,12 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
         background: var(--bg-primary);
         border: 1px solid var(--border);
         border-radius: var(--radius);
+        margin-bottom: 12px;
+    }
+    .agenda-note {
+        font-size: 11px;
+        color: var(--text-muted);
+        font-weight: 300;
         margin-bottom: 36px;
     }
     .format-step {
@@ -1133,7 +1155,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
 
     /* WHY */
     #why {
-        background: var(--bg-primary);
+        background: var(--bg-secondary);
     }
     .why-grid {
         display: grid;
@@ -1175,7 +1197,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
 
     /* AUDIENCE */
     #audience {
-        background: var(--bg-secondary);
+        background: var(--bg-primary);
     }
     .audience-cols {
         display: grid;
@@ -1227,10 +1249,17 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
     .audience-card.no .audience-list li::before {
         color: var(--red);
     }
+    .audience-note {
+        font-size: 12px;
+        color: var(--text-muted);
+        font-weight: 300;
+        line-height: 1.7;
+        margin-top: 16px;
+    }
 
     /* INSTRUCTORS */
     #instructors {
-        background: var(--bg-primary);
+        background: var(--bg-secondary);
     }
     .instructor-grid {
         display: grid;
@@ -1299,7 +1328,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
 
     /* TESTIMONIALS */
     #testimonials {
-        background: var(--bg-secondary);
+        background: var(--bg-primary);
     }
     .quote-card {
         background: var(--bg-card);
