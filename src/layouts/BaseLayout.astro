@@ -142,5 +142,27 @@ const fullOgImage = ogImage
         <Header showCta={showCta} ctaUrl={ctaUrl} ctaLabel={ctaLabel} />
         <slot />
         <Footer eventLine={footerLine} />
+
+        <script is:inline>
+            // Carry the visitor's UTM parameters into the Cal.com booking so
+            // a booking shows where the visitor came from.
+            (function () {
+                var params = new URLSearchParams(window.location.search);
+                var utm = [];
+                params.forEach(function (value, key) {
+                    if (key.indexOf("utm_") === 0) utm.push([key, value]);
+                });
+                if (!utm.length) return;
+                document
+                    .querySelectorAll('a[href^="https://cal.com/"]')
+                    .forEach(function (link) {
+                        var url = new URL(link.href);
+                        utm.forEach(function (pair) {
+                            url.searchParams.set(pair[0], pair[1]);
+                        });
+                        link.href = url.toString();
+                    });
+            })();
+        </script>
     </body>
 </html>
