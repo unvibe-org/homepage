@@ -33,6 +33,10 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Public by design: the token ships in every page's source.
+          PUBLIC_POSTHOG_PROJECT_TOKEN: phc_xKEed7RmBGj6KJWWoyopfxrm5HxLyN3VdeMKqzejBaBW
+          PUBLIC_POSTHOG_HOST: https://eu.i.posthog.com
 
       - name: Setup Pages
         if: github.ref == 'refs/heads/main'

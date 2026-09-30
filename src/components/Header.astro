@@ -47,6 +47,14 @@ const linkPrefix = isHome ? "" : "/";
     </ul>
 </nav>
 
+<script is:inline>
+    document.querySelector(".nav-cta")?.addEventListener("click", function () {
+        window.posthog?.capture("workshop_booking_initiated", {
+            placement: "navigation",
+        });
+    });
+</script>
+
 <style>
     nav {
         position: fixed;

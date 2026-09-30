@@ -40,6 +40,7 @@ const workshopNote = nextEvent
 
                 <div class="guide-cta">
                     <a
+                        id="guide-download"
                         href="/public/agentic-engineering-guide.pdf"
                         target="_blank"
                         rel="noopener"
@@ -145,6 +146,10 @@ const workshopNote = nextEvent
 
 <script is:inline>
     (function () {
+        document.getElementById("guide-download")?.addEventListener("click", function () {
+            window.posthog?.capture("guide_downloaded");
+        });
+
         var form = document.getElementById("updates-form");
         var feedback = document.getElementById("updates-feedback");
         if (!form) return;
@@ -176,6 +181,9 @@ const workshopNote = nextEvent
                     form.style.display = "none";
                     feedback.textContent = "Subscribed. We'll be in touch.";
                     feedback.className = "updates-feedback success";
+                    window.posthog?.capture("newsletter_subscription_completed", {
+                        placement: "guide",
+                    });
                 })
                 .catch(function () {
                     feedback.textContent =
