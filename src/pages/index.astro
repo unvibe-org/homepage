@@ -52,7 +52,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
             </p>
 
             <div class="hero-actions">
-                <a href={bookMailto} class="btn-primary">Book a workshop →</a>
+                <a href={bookMailto} class="btn-primary" data-umami-event="book-workshop" data-umami-event-location="hero">Book a workshop →</a>
                 <a href="#courses" class="btn-ghost">See an example workshop →</a>
             </div>
 
@@ -392,7 +392,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                 </div>
 
                 <div class="course-actions">
-                    <a href={bookMailto} class="btn-primary">Book a workshop →</a>
+                    <a href={bookMailto} class="btn-primary" data-umami-event="book-workshop" data-umami-event-location="courses">Book a workshop →</a>
                     <a href="/guide/" class="btn-ghost">Download the free guide →</a>
                 </div>
             </div>
@@ -595,7 +595,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
             <div
                 style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;"
             >
-                <a href={bookMailto} class="btn-primary">Book a workshop →</a>
+                <a href={bookMailto} class="btn-primary" data-umami-event="book-workshop" data-umami-event-location="closing">Book a workshop →</a>
                 <a href="#courses" class="btn-ghost">See an example workshop →</a>
             </div>
         </div>
