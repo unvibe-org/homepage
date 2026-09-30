@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getNextEvent, getPastEvents } from "../data/eventHelpers";
 import { bookingUrl } from "../data/booking";
+import { managerEmailDe, managerEmailEn, onePagerPath } from "../data/managerEmail";
 
 const nextEvent = getNextEvent();
 const pastEvents = getPastEvents();
@@ -415,6 +416,33 @@ const metaDescShort = `AI coding workshops for engineering teams. On-site at you
         </div>
     </section>
 
+    <section id="bring-to-team">
+        <div class="max-w">
+            <h2 class="section-title">Want this for your team?</h2>
+            <p class="section-desc">
+                Your engineering manager is usually the one who books it. You
+                can send them our one-pager, or the email we wrote for you,
+                which leaves one line for why you want the day.
+            </p>
+
+            <div class="course-actions bring-actions">
+                <a
+                    href={onePagerPath}
+                    target="_blank"
+                    rel="noopener"
+                    class="btn-primary"
+                    data-one-pager-download>Download the one-pager →</a
+                >
+                <a href={managerEmailEn} class="btn-ghost" data-manager-email="en"
+                    >Send this to your manager →</a
+                >
+                <a href={managerEmailDe} class="bring-alt" lang="de" data-manager-email="de"
+                    >auf Deutsch</a
+                >
+            </div>
+        </div>
+    </section>
+
     <section id="core-info">
         <div class="max-w">
             {/*
@@ -610,6 +638,23 @@ const metaDescShort = `AI coding workshops for engineering teams. On-site at you
             link.addEventListener("click", function () {
                 window.posthog?.capture("workshop_booking_initiated", {
                     placement: link.dataset.bookingPlacement,
+                });
+            });
+        });
+
+        document.querySelectorAll("[data-one-pager-download]").forEach(function (link) {
+            link.addEventListener("click", function () {
+                window.posthog?.capture("one_pager_downloaded", {
+                    placement: "bring_to_team",
+                });
+            });
+        });
+
+        document.querySelectorAll("[data-manager-email]").forEach(function (link) {
+            link.addEventListener("click", function () {
+                window.posthog?.capture("manager_email_opened", {
+                    placement: "bring_to_team",
+                    language: link.dataset.managerEmail,
                 });
             });
         });
@@ -982,6 +1027,24 @@ const metaDescShort = `AI coding workshops for engineering teams. On-site at you
         font-size: 11px;
         flex-shrink: 0;
     }
+    /* BRING THIS TO YOUR TEAM */
+    #bring-to-team {
+        background: var(--bg-secondary);
+    }
+    .bring-actions {
+        margin-top: 32px;
+        align-items: center;
+    }
+    .bring-alt {
+        font-size: 13px;
+        color: var(--text-secondary);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+    .bring-alt:hover {
+        color: var(--amber);
+    }
+
     /* CORE INFO */
     #core-info {
         background: var(--bg-secondary);
