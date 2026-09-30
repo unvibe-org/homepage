@@ -1,18 +1,17 @@
 # Plan: booking call instead of email
 
 The homepage's main call to action becomes a 20-minute call booked through
-Cal.com. A second path, "Bring this to your team", lets a developer who cannot
-book pass the workshop on to their engineering manager.
+Cal.com.
 
 Background and evidence: `workshops/research/linkedin-to-lead-funnel.md`.
+The path for developers who cannot book is planned in
+`docs/bring-this-to-your-team-plan.md`.
 
 ## Why
 
 - Every "Book a workshop" button opens an email to
   `dominik.grusemann@gmail.com`. Writing an email from scratch is a big step
   for a visitor who has only just heard of us.
-- Most visitors from LinkedIn are developers. The buyer is their engineering
-  manager, and the site gives the developer nothing to forward.
 - A booked call is a clear conversion we can count. An email opened in a mail
   app is invisible to us after the click.
 
@@ -66,32 +65,10 @@ Booking URL: `https://cal.com/dominik1001/workshop`.
   alternative for visitors who prefer to write.
 - The footer "Contact" link stays an email link.
 
-### 4. "Bring this to your team" section
-
-This depends on two assets in the workshops repo that do not exist yet:
-
-- an email and a Slack message a developer sends to their manager
-  (`2-marketing/channels/outreach/pitch-your-manager/`, English and German)
-- a one-page PDF for the manager: outcome, format, price range, and answers to
-  questions about security, data handling, and tools
-
-Once they exist, the homepage gets a short section after the example workshop
-with two actions:
-
-- **Send this to your manager**: a `mailto:` with the developer-to-manager
-  email already filled in, subject and body, and no recipient.
-- **Download the one-pager**: the PDF, served from `public/`.
-
-Each action sends its own PostHog event (`manager_email_opened`,
-`one_pager_downloaded`) with a `placement` property, following the pattern of
-`guide_downloaded`.
-
-### 5. Privacy page
+### 4. Privacy page
 
 - Section 5 ("External links") names Cal.com for booking calls and drops
   Luma, which the site no longer uses.
-- Section 4 ("Analytics") lists the new events once "Bring this to your team"
-  ships.
 
 ## Copy
 
@@ -107,8 +84,6 @@ to scope the day for your team."
 2. Switch the buttons, FAQ, and privacy page in one PR. Build, check the four
    buttons and the header on desktop and at phone width, and confirm in
    PostHog that `workshop_booking_initiated` still arrives.
-3. Write the manager kit and one-pager in the workshops repo.
-4. Add the "Bring this to your team" section in a second PR.
 
 ## Measuring it
 
@@ -116,11 +91,8 @@ to scope the day for your team."
   (https://eu.posthog.com/project/289357/insights/0ZNu5ycu).
 - **Bookings:** Cal.com bookings of the `workshop` event type, with the
   answers to "How did you hear about us?".
-- **Forwarding:** `manager_email_opened` and `one_pager_downloaded` in PostHog, once
-  "Bring this to your team" ships.
 
 ## Open questions
 
 - Should the booking go to Dominik alone, or rotate across instructors through
   a Cal.com team event?
-- Does the site show a price range, or does it stay on the one-pager only?
