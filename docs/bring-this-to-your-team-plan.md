@@ -48,7 +48,7 @@ the developer. Two actions:
   the site, because a mailto cannot attach a file. The German email is offered
   as a second, smaller link, "auf Deutsch".
 
-Suggested copy, to be checked against `../workshops/WRITING.md` before it goes
+Suggested copy, to be checked against the `unvibe-writing` skill before it goes
 in:
 
 > **Want this for your team?**
