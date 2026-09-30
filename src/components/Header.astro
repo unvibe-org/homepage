@@ -1,4 +1,6 @@
 ---
+import { bookingUrl } from "../data/booking";
+
 interface Props {
     showCta?: boolean;
     ctaUrl?: string;
@@ -7,7 +9,7 @@ interface Props {
 // Corporate booking is the single conversion path (matches index.astro).
 const {
     showCta = true,
-    ctaUrl = "mailto:dominik.grusemann@gmail.com?subject=Workshop%20for%20our%20team",
+    ctaUrl = bookingUrl,
     ctaLabel = "Book a workshop →",
 } = Astro.props;
 const isHome = Astro.url.pathname === "/";

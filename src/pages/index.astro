@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getNextEvent, getPastEvents } from "../data/eventHelpers";
+import { bookingUrl } from "../data/booking";
 
 const nextEvent = getNextEvent();
 const pastEvents = getPastEvents();
@@ -9,9 +10,6 @@ const hasUpcoming = nextEvent !== null;
 const metaDesc = `We bring hands-on AI coding workshops to your engineering team, on-site at your office. One day takes your engineers from vibe coding to production-ready code with AI agents.`;
 const metaDescShort = `AI coding workshops for engineering teams. On-site at your office.`;
 
-// Corporate booking is the single conversion path while positioning is
-// per-workshop (no public per-seat tickets on the page for now).
-const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURIComponent("Workshop for our team")}`;
 ---
 
 <BaseLayout
@@ -25,7 +23,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
     twitterDescription={metaDescShort}
     twitterImage="https://unvibe.org/public/twitter-card.png?v=2"
     includeManifest={true}
-    ctaUrl={bookMailto}
+    ctaUrl={bookingUrl}
     ctaLabel="Book a workshop →"
     footerLine={undefined}
 >
@@ -52,9 +50,10 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
             </p>
 
             <div class="hero-actions">
-                <a href={bookMailto} class="btn-primary" data-booking-placement="hero">Book a workshop →</a>
+                <a href={bookingUrl} class="btn-primary" data-booking-placement="hero">Book a workshop →</a>
                 <a href="#courses" class="btn-ghost">See an example workshop →</a>
             </div>
+            <p class="hero-cta-note">A 20-minute call to scope the day for your team.</p>
 
             {hasUpcoming && (
                 <div class="hero-meta">
@@ -392,7 +391,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                 </div>
 
                 <div class="course-actions">
-                    <a href={bookMailto} class="btn-primary" data-booking-placement="workshop_example">Book a workshop →</a>
+                    <a href={bookingUrl} class="btn-primary" data-booking-placement="workshop_example">Book a workshop →</a>
                     <a href="/guide/" class="btn-ghost">Download the free guide →</a>
                 </div>
             </div>
@@ -507,10 +506,13 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
                 <details class="faq-item">
                     <summary>How do we book?</summary>
                     <p>
-                        Email <a href="mailto:dominik.grusemann@gmail.com"
+                        <a href={bookingUrl} data-booking-placement="faq"
+                            >Book a 20-minute call</a
+                        > and we'll scope the day with you and send a quote. If
+                        you prefer to write, email <a
+                            href="mailto:dominik.grusemann@gmail.com"
                             >dominik.grusemann@gmail.com</a
-                        > with your team size and rough dates. We'll scope it and
-                        send a quote.
+                        > with your team size and rough dates.
                     </p>
                 </details>
             </div>
@@ -595,7 +597,7 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
             <div
                 style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;"
             >
-                <a href={bookMailto} class="btn-primary" data-booking-placement="final_cta">Book a workshop →</a>
+                <a href={bookingUrl} class="btn-primary" data-booking-placement="final_cta">Book a workshop →</a>
                 <a href="#courses" class="btn-ghost">See an example workshop →</a>
             </div>
         </div>
@@ -823,6 +825,11 @@ const bookMailto = `mailto:dominik.grusemann@gmail.com?subject=${encodeURICompon
         align-items: center;
         gap: 20px;
         flex-wrap: wrap;
+    }
+    .hero-cta-note {
+        margin-top: 14px;
+        font-size: 12px;
+        color: var(--text-secondary);
     }
     .btn-primary {
         display: inline-flex;
