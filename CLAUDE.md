@@ -7,13 +7,15 @@ Every word on this site — headlines, body copy, FAQ answers, alt text, meta
 descriptions — is governed by the unvibe writing guide. It lives in the **workshops**
 repo, not this one:
 
-- `workshops/WRITING.md` — sentence-level craft. Canonical for all prose.
-- `workshops/2-marketing/positioning.md` §9 — marketing voice and messaging. This site
+- `workshops/.agents/skills/unvibe-writing/SKILL.md` (the `unvibe-writing` skill):
+  sentence-level craft. Canonical for all prose.
+- `workshops/2-marketing/positioning.md` §9: marketing voice and messaging. This site
   is a marketing asset, so where the two conflict, positioning wins.
 
-Both are in a sibling checkout: from this repo, `../workshops/WRITING.md`.
+Both are in a sibling checkout: from this repo,
+`../workshops/.agents/skills/unvibe-writing/SKILL.md`.
 
-**If you cannot read `workshops/WRITING.md`, do not write or edit copy.** Stop and tell
+**If you cannot read the `unvibe-writing` skill, do not write or edit copy.** Stop and tell
 the user the guide is unreachable and where you looked. Do not work from memory, from
 the voice of the surrounding copy, or from a summary of the guide in a previous
 conversation — the guide is revised as writing gets rejected in review, so a
