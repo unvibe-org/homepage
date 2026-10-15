@@ -21,13 +21,13 @@ unvibe.org hosts a one-afternoon, in-person workshop in Munich for developers wh
 
 ## Format
 
-- 12:00 PM -- Introduction (60 min): CLAUDE.md best practices, compound engineering, context window fundamentals
+- 12:00 PM -- Introduction (60 min): AGENTS.md best practices, compound engineering, context window fundamentals
 - 1:00 PM -- Project time (4 hrs): hands-on guided work with instructor support. Projects are provided; attendees do not bring their own
 - 5:00 PM -- Networking and beers
 
 ## Curriculum
 
-1. Structuring for the agent -- what goes in CLAUDE.md / agents.md, skills, static analysis tools, agent reviews (e.g. CodeRabbit)
+1. Structuring for the agent -- what goes in AGENTS.md, skills, static analysis tools, agent reviews (e.g. CodeRabbit)
 2. Compound engineering -- calibrating control, driving the model for high-quality output, breaking work into chunks, knowing what to delegate vs. own
 3. Keeping the code yours -- clean code with AI, test loops, git branches and worktrees for AI-assisted workflows, code quality metrics
 
